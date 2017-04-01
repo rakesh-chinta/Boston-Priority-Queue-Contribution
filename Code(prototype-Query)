@@ -1,0 +1,40 @@
+
+I'm optimizing my timer interrupt function for kernal threads in Nachos OS.
+
+
+I have a class called alarms:
+
+public alarms(long wakeTime, KThread my_thread)
+{
+    wakeTime=wakeTime;
+    thread = my_thread;
+}
+
+public long getWakeTime()
+{
+    return wakeTime;
+}
+
+public KThread get_my_thread()
+{
+    return thread;
+}
+I also have a priority queue which is min-heap based:
+
+Queue<alarms> my_alarms = new PriorityQueue<alarms>();
+Making the priority queue compare the wakeTime attribute of the alarms class, and generate the min-heap based on that.
+
+In C++ I would overload the operator< function as follows:
+
+bool operator<(alarms a, alarms b){return a.wakeTime < b.wakeTime ? true : false;}
+
+In java,
+
+
+public class Alarm implements Comparable<Alarm> {
+   @Override 
+    public int compareTo(Object o) {
+        Alarm a = (Alarm) o; 
+        return this.wakeTime - a.wakeTime ;
+    }
+}
